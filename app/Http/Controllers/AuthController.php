@@ -44,4 +44,32 @@ class AuthController extends Controller
         ]);
        }
     }
+    public function Login(Request $request){
+        try{
+            $request->validate([
+            'email'=>'required|email',
+            'password'=>'required'
+        ]);
+
+        if(Auth::attempt($request->only('email', 'password'))){
+            $user=Auth::user();
+
+            return response()->json([
+                'succcess'=>true,
+                'message'=>'user logged in successfully',
+                'user'=>$user
+            ]);
+        }else{
+            return response()->json([
+                'success'=>false,
+                'message'=>'Invalid credentials'
+            ]);
+        }
+        }catch(Exception $e){
+           return response()->json([
+             'success'=>false,
+            'message'=>'Logged in failed'
+           ],500);
+        }
+    }
 }
