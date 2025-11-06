@@ -25,7 +25,6 @@ class AuthController extends Controller
             'success'=>true,
             'message'=>'User Registered Successfully!',
             'user'=>[
-                'id'=>$user->id,
                'name'=>$user->name,
                'email'=>$user->email
                      ]
