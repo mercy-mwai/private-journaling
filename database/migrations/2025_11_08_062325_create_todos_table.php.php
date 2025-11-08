@@ -11,17 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('planner_metadata',function(Blueprint $table){
+        Schema::create('todos', function(Blueprint $table){
             $table->id();
             $table->foreignId('user_id')
             ->constrained()
             ->onDelete('cascade');
-            $table->date('date');
-            $table->longText('main_focus')->nullable();
-            $table->text('goals')->nullable();
-            $table->text('mood')->nullable();
+            $table->foreignId('planner_metadata_id')
+            ->constrained('planner_metadata')
+            ->onDelete('cascade');
+            $table->text('text');
+            $table->boolean('completed');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
