@@ -11,15 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('planner_entries', function(Blueprint $table){
+        Schema::create('planner_metadata',function(Blueprint $table){
             $table->id();
             $table->foreignId('user_id')
             ->constrained()
             ->onDelete('cascade');
-            $table->timestamp('time_slot');
-            $table->longText('activity');
-            $table->text('day_of_week');
-            $table->timestamps();
+            $table->date('date');
+            $table->longText('main_focus')->nullable();
+            $table->text('goals')->nullable();
+            $table->text('mood')->nullable();
         });
     }
 
