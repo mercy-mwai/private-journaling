@@ -16,10 +16,14 @@ return new class extends Migration
             $table->foreignId('user_id')
             ->constrained()
             ->onDelete('cascade');
-            $table->timestamp('time_slot');
-            $table->longText('activity');
-            $table->text('day_of_week');
+            $table->date('date')->index();
+            $table->time('time')->index();
+            $table->string('activity');
+            $table->integer('day_of_week');
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->index(['user_id', 'date']);
         });
     }
 

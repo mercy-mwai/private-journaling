@@ -16,12 +16,13 @@ return new class extends Migration
             $table->foreignId('user_id')
             ->constrained()
             ->onDelete('cascade');
-            $table->date('date');
-            $table->longText('main_focus')->nullable();
+            $table->date('date')->index();
+            $table->text('main_focus')->nullable();
             $table->text('goals')->nullable();
-            $table->text('mood')->nullable();
+            $table->enum('mood',['focused', 'energetic', 'calm', 'tired', 'stressed'])->nullable();
             $table->timestamps();
-            $table->softDeletes();
+            
+            $table->unique(['user_id', 'date']);
         });
     }
 

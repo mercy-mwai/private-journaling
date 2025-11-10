@@ -17,3 +17,5 @@ Route::post('/login', [AuthController::class, 'Login']);
 Route::middleware('auth:sanctum')->prefix('auth')->group(function(){
 Route::post('/logout', [AuthController::class, 'Logout']);
 });
+
+Route::post('/planner-metadata/{date}', [PlannerEntryController::class, '' ]);

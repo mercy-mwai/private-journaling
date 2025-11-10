@@ -16,12 +16,14 @@ return new class extends Migration
             $table->foreignId('user_id')
             ->constrained()
             ->onDelete('cascade');
-            $table->foreignId('planner_metadata_id')
-            ->constrained('planner_metadata')
-            ->onDelete('cascade');
-            $table->text('text');
-            $table->boolean('completed');
+            $table->date('date')->index();
+            $table->string('text');
+            $table->boolean('completed')->default(false);
             $table->timestamps();
+            $table->softDeletes();
+
+            $table->index(['user_id', 'date']);
+
         });
     }
 
