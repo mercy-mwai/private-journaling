@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class plannerMetadata extends Model
 {
+    protected $table = 'todos';
     protected $fillable=[
         'user_id',
         'date',

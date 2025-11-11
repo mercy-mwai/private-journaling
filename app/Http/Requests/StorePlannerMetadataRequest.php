@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePlannerEntryRequest extends FormRequest
+class StorePlannerMetadataRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,9 +23,9 @@ class StorePlannerEntryRequest extends FormRequest
     {
         return [
            'date'=> 'required|date_format:Y-m-d',
-           'time'=>  'required|date_format:H:i',
-           'day_of_week' => 'required|integer|between:0-6',
-           'activity'=>'required|string|max:500'
+           'main_focus'=> 'nullable|string|max:1000',
+           'goals'=> 'nullable|string|max:1000',
+           'mood'=> 'nullable|in:focused,energetic,calm,tired,stressed'
         ];
     }
 }
