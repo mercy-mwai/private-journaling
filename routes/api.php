@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PlannerEntryController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -19,9 +20,12 @@ Route::post('/logout', [AuthController::class, 'Logout']);
 });
 
 //planner entries Routes
-
 Route::get('/planner_entries/week/$startDate', [PlannerEntryController::class, 'getByWeek']);
 Route::get ('/planner_entries/day/$date', [PlannerEntryController::class, 'getByDay']);
-Route::post('/planner_entries', [PlannerEntryController::class, 'Store']);
+// Route::post('/planner-entries', [PlannerEntryController::class, 'Store']);
 Route::put('/planner_entries/update', [PlannerEntryController::class, 'Update']);
 Route::delete('planner_entries/delete', [PlannerEntryController::class, 'Destroy']);
+
+Route::middleware('auth:sanctum')->group(function () {
+    Route::post('/planner-entries', [PlannerEntryController::class, 'Store']);
+});

@@ -24,7 +24,7 @@ class StorePlannerEntryRequest extends FormRequest
         return [
            'date'=> 'required|date_format:Y-m-d',
            'time'=>  'required|date_format:H:i',
-           'day_of_week' => 'required|integer|between:0-6',
+           'day_of_week' => 'required|integer|between:0,6',
            'activity'=>'required|string|max:500'
         ];
     }
