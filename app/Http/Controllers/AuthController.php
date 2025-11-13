@@ -19,7 +19,7 @@ class AuthController extends Controller
     
          $validatedData['password']=Hash::make($validatedData['password']);
          $user=User::create($validatedData);
-         Auth::login($user);
+         $token= $user->createToken('auth_token')->plainTextToken;
 
          return response()->json([
             'success'=>true,
@@ -52,6 +52,7 @@ class AuthController extends Controller
 
         if(Auth::attempt($request->only('email', 'password'))){
             $user=Auth::user();
+        $token=$user->createToken('auth_token')->plainTextToken;
 
             return response()->json([
                 'succcess'=>true,
@@ -73,7 +74,7 @@ class AuthController extends Controller
     }
     public function logout(Request $request){
         try{
-            $request->user()->currentAccessToken->delete();
+            $request->user()->currentAccessToken()->delete();
             return response()->json([
                 'success'=>true,
                 'message'=>'User Logged out Successfully'
