@@ -6,7 +6,7 @@ use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class plannerMetadata extends Model
+class PlannerMetadata extends Model
 {
     protected $table = 'todos';
     protected $fillable=[

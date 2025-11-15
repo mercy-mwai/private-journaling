@@ -29,7 +29,9 @@ Route::post('/planner-entries', [PlannerEntryController::class, 'Store']);
 Route::put('/planner_entries/{id}', [PlannerEntryController::class, 'Update']);
 Route::delete('planner_entries/{id}', [PlannerEntryController::class, 'Destroy']);
 });
-//planner metadata
 
-Route::get('planner_metadata/day/{id}', [PlannerMetadataController::class, Show]);
-Route::post('planner_metadata', [PlannerMetadataController::class, Store]);
+//planner metadata
+Route::middleware('auth:sanctum')->group(function() {
+Route::get('/planner_metadata/day/{id}', [PlannerMetadataController::class, 'Show']);
+Route::post('/planner_metadata', [PlannerMetadataController::class, 'Store']);
+});

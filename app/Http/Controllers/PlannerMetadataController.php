@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\PlannerMetadata;
+use App\Http\Requests\StorePlannerMetadataRequest;
 
 class PlannerMetadataController extends Controller
 {
@@ -17,24 +18,24 @@ class PlannerMetadataController extends Controller
             return response()->json([
                 'date'=>$date,
                 'main_focus'=>null,
-                'goal'=>null,
-                'activity'=>null
+                'goals'=>null,
+                'mood'=>null
             ]);
         }
         return response()->json($metadata);
     }
 
-    public function Store()
+    public function Store(StorePlannerMetadataRequest $request) : JsonResponse
     {
-        $metadata= PlannerMetadata::create(
+        $metadata= PlannerMetadata::updateOrCreate(
         [
             'user_id'=>auth()->id(),
-            'date'=>$date
+            'date'=>$request->date
         ],
         [
             'main_focus'=>$request->main_focus,
-            'goal'=>$request->goal,
-            'activity'=>$request->activity
+            'goals'=>$request->goal,
+            'mood'=>$request->mood
         ]
     );
     return response()->json([
