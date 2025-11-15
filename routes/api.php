@@ -20,12 +20,12 @@ Route::post('/logout', [AuthController::class, 'Logout']);
 });
 
 //planner entries Routes
-Route::get('/planner_entries/week/$startDate', [PlannerEntryController::class, 'getByWeek']);
-Route::get ('/planner_entries/day/$date', [PlannerEntryController::class, 'getByDay']);
-// Route::post('/planner-entries', [PlannerEntryController::class, 'Store']);
-Route::put('/planner_entries/update', [PlannerEntryController::class, 'Update']);
-Route::delete('planner_entries/delete', [PlannerEntryController::class, 'Destroy']);
 
 Route::middleware('auth:sanctum')->group(function () {
-    Route::post('/planner-entries', [PlannerEntryController::class, 'Store']);
+Route::get('/planner_entries/week/{startDate}', [PlannerEntryController::class, 'getByWeek']);
+Route::get ('/planner_entries/day/{date}', [PlannerEntryController::class, 'getByDay']);
+Route::post('/planner-entries', [PlannerEntryController::class, 'Store']);
+Route::put('/planner_entries/{id}', [PlannerEntryController::class, 'Update']);
+Route::delete('planner_entries/{id}', [PlannerEntryController::class, 'Destroy']);
+
 });

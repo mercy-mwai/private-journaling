@@ -9,7 +9,7 @@ use App\Http\Requests\StorePlannerEntryRequest;
 
 class PlannerEntryController extends Controller
 {
-    public function getByWeek($startDate) :JsonResponse
+    public function getByWeek($startDate) 
     {
        $entries= PlannerEntry:: where('user_id', auth()->id())
         ->where('date', '>=', $startDate)
@@ -35,7 +35,7 @@ class PlannerEntryController extends Controller
         ]);
     }
 
-    public function Store(StorePlannerEntryRequest $request) :JsonResponse
+    public function Store(StorePlannerEntryRequest $request) 
     {
         $entries= PlannerEntry::create([
             'user_id'=>auth()->id(),
@@ -54,7 +54,7 @@ class PlannerEntryController extends Controller
         $entry =PlannerEntry::where('user_id', auth()->id())
         ->findOrFail($id);
 
-        $updateEntry=update([
+        $entry=update([
             'time'=>$request->time,
             'activity'=>$request->activity,
             'day_of_week'=>$request->day_of_week
@@ -62,7 +62,7 @@ class PlannerEntryController extends Controller
 
         return response()->json([
             'message'=> 'Activity updated Successfully',
-            'data'=>$updateEntry
+            'data'=>$entry
         ]);
     }
   public function Destroy($id):JsonResponse

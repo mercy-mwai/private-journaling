@@ -24,6 +24,7 @@ class AuthController extends Controller
          return response()->json([
             'success'=>true,
             'message'=>'User Registered Successfully!',
+            'token'=>$token,
             'user'=>[
                'name'=>$user->name,
                'email'=>$user->email
@@ -57,6 +58,7 @@ class AuthController extends Controller
             return response()->json([
                 'succcess'=>true,
                 'message'=>'user logged in successfully',
+                'token'=>$token,
                 'user'=>$user
             ]);
         }else{
