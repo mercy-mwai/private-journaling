@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\PlannerEntry;
 use Illuminate\Http\Request;
 use App\Models\PlannerMetadata;
+use Illuminate\Http\JsonResponse;
 use App\Http\Requests\StorePlannerEntryRequest;
 
 class PlannerEntryController extends Controller
@@ -47,7 +48,7 @@ class PlannerEntryController extends Controller
         return response()->json([
             'message'=> 'Activty added successfully',
             'data'=>$entries
-        ]);
+        ],201);
     }
     public function Update(StorePlannerEntryRequest $request, $id):JsonResponse
     {
