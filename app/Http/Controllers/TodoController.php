@@ -17,4 +17,17 @@ class TodoController extends Controller
         'todos'=>$todos
     ]);
    }
+   public function Store(StoreTodoRequest $request)
+   {
+    $todos=Todo::create([
+        'date'=>$request->date,
+        'text'=>$request->text,
+        'completed'=>$request->completed
+    ]);
+
+    return response()->json([
+        'message'=>'Todos added Successfully',
+        'data'=>$todos
+    ]);
+   }
 }
