@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\TodoController;
 use App\Http\Controllers\PlannerEntryController;
 use App\Http\Controllers\PlannerMetadataController;
 
@@ -34,4 +35,9 @@ Route::delete('planner_entries/{id}', [PlannerEntryController::class, 'Destroy']
 Route::middleware('auth:sanctum')->group(function() {
 Route::get('/planner_metadata/day/{id}', [PlannerMetadataController::class, 'Show']);
 Route::post('/planner_metadata', [PlannerMetadataController::class, 'Store']);
+});
+
+//Todo Routes
+Route::middleware('auth:sanctum')->group(function(){
+    Route::get('/todo/day/{date}', [TodoController::class, 'getByDay']);
 });
