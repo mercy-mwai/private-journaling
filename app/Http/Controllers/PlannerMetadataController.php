@@ -25,7 +25,7 @@ class PlannerMetadataController extends Controller
         return response()->json($metadata);
     }
 
-    public function Store(StorePlannerMetadataRequest $request) : JsonResponse
+    public function Store(StorePlannerMetadataRequest $request) 
     {
         $metadata= PlannerMetadata::updateOrCreate(
         [
