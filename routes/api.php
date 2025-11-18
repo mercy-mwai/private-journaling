@@ -41,4 +41,7 @@ Route::post('/planner_metadata', [PlannerMetadataController::class, 'Store']);
 Route::middleware('auth:sanctum')->group(function(){
     Route::get('/todo/day/{date}', [TodoController::class, 'getByDay']);
     Route::post('/todo', [TodoController::class, 'Store']);
+    Route::put('/todo/{id}', [TodoController::class, 'Update']);
+    Route::patch('/todo/{id}/toggle', [TodoController::class], 'Toggle');
+    Route::delete('/todo/{id}', [TodoController::class, 'Destroy']);
 });
