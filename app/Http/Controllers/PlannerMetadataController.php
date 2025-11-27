@@ -17,10 +17,10 @@ class PlannerMetadataController extends Controller
         if(!$metadata){
             return response()->json([
                 'date'=>$date,
-                'main_focus'=>null,
-                'goals'=>null,
-                'mood'=>null
-            ]);
+                'main_focus'=>$metadata?->main_focus ?? null,
+                'goals'=>$metadata?->goals ??null,
+                'mood'=>$metadata?->mood??null
+            ], 200);
         }
         return response()->json($metadata);
     }

@@ -22,7 +22,7 @@ class PlannerEntryController extends Controller
 
          return response()->json([
         'entries'=>$entries
-    ]);
+    ], 200);
     }
     public function getByDay($date) :JsonResponse
     {
@@ -33,7 +33,7 @@ class PlannerEntryController extends Controller
 
         return response()->json([
             'entries'=>$entries
-        ]);
+        ],200);
     }
 
     public function Store(StorePlannerEntryRequest $request) 
@@ -64,7 +64,7 @@ class PlannerEntryController extends Controller
         return response()->json([
             'message'=> 'Activity updated Successfully',
             'data'=>$entry
-        ]);
+        ],200);
     }
   public function Destroy($id):JsonResponse
   {
@@ -74,8 +74,7 @@ class PlannerEntryController extends Controller
 
    return response()->json([
     'message'=> 'Activity Deleted Successfully',
-
-   ]);
+   ],200);
   }
     
 }

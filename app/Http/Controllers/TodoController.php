@@ -17,7 +17,7 @@ class TodoController extends Controller
 
     return response()->json([
         'todos'=>$todo
-    ]);
+    ],200);
    }
    public function Store(StoreTodoRequest $request)
    {
@@ -43,7 +43,7 @@ class TodoController extends Controller
     return response()->json([
         'message'=> 'Todo updated successfully',
         'data'=>$todo
-    ]);
+    ],200);
    }
 
    public function Update(StoreTodoRequest $request ,$id)
@@ -58,7 +58,7 @@ class TodoController extends Controller
     return response()->json([
         'message'=> 'Todos Updated Successfully',
         'data'=>$todo
-    ]);
+    ],200);
    }
 
    public function Destroy(StoreTodoRequest $request, $id)
@@ -69,7 +69,7 @@ class TodoController extends Controller
 
     return response()->json([
         'message'=>'Todo deleted successfully',
-    ]);
+    ],200);
    }
 
 }
