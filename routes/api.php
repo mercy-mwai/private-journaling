@@ -24,17 +24,17 @@ Route::post('/logout', [AuthController::class, 'Logout']);
 //planner entries Routes
 
 Route::middleware('auth:sanctum')->group(function () {
-Route::get('/planner_entries/week/{startDate}', [PlannerEntryController::class, 'getByWeek']);
-Route::get ('/planner_entries/day/{date}', [PlannerEntryController::class, 'getByDay']);
+Route::get('/planner-entries/week/{startDate}', [PlannerEntryController::class, 'getByWeek']);
+Route::get ('/planner-entries/day/{date}', [PlannerEntryController::class, 'getByDay']);
 Route::post('/planner-entries', [PlannerEntryController::class, 'Store']);
-Route::put('/planner_entries/{id}', [PlannerEntryController::class, 'Update']);
-Route::delete('planner_entries/{id}', [PlannerEntryController::class, 'Destroy']);
+Route::put('/planner-entries/{id}', [PlannerEntryController::class, 'Update']);
+Route::delete('planner-entries/{id}', [PlannerEntryController::class, 'Destroy']);
 });
 
 //planner metadata
 Route::middleware('auth:sanctum')->group(function() {
-Route::get('/planner_metadata/day/{id}', [PlannerMetadataController::class, 'Show']);
-Route::post('/planner_metadata', [PlannerMetadataController::class, 'Store']);
+Route::get('/planner-metadata/day/{id}', [PlannerMetadataController::class, 'Show']);
+Route::post('/planner-metadata', [PlannerMetadataController::class, 'Store']);
 });
 
 //Todo Routes
