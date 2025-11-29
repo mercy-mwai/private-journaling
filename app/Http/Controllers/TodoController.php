@@ -12,7 +12,7 @@ class TodoController extends Controller
    {
     $todo= Todo::where('user_id', auth()->id())
     ->where('date', $date)
-    ->orderBy('time')
+    ->orderBy('created_at')
     ->get();
 
     return response()->json([

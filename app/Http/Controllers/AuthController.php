@@ -74,6 +74,40 @@ class AuthController extends Controller
            ],500);
         }
     }
+    public function me(Request $request){
+        $user= $request->user();
+        if(!user){
+            return response()->json([
+                'message'=>"unauthenticated"
+            ],401);
+        }
+        return response()->json([
+            'id'=>$user->id,
+            'name'=>$user->name,
+            'email'=>$user->email,
+            'created_at'=>$user->created_at
+        ],200);
+    }
+    public function refresh(Request $request){
+        $user=$request->user();
+
+        if(!$user){
+            return response->json([
+                'message'=>"Unauthenticated"
+            ],401);
+        }
+        $newToken=$user->createToken('auth_token')->plainTextToken;
+
+        return response()->json([
+            'message'=>'Token refreshed successfully',
+            'token'=>$newToken,
+            'user'=>[
+                'id'=>$user->id,
+                'name'=>$user->name,
+                'email'=>$user->email
+            ]
+        ]);
+    }
     public function logout(Request $request){
         try{
             $request->user()->currentAccessToken()->delete();

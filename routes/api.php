@@ -24,22 +24,26 @@ Route::post('/logout', [AuthController::class, 'Logout']);
 //planner entries Routes
 
 Route::middleware('auth:sanctum')->group(function () {
+
+    Route::get('/me', [AuthController::class, 'me']);
+    Route::post('/refresh', [AuthController::class, 'refresh']);
+
 Route::get('/planner-entries/week/{startDate}', [PlannerEntryController::class, 'getByWeek']);
 Route::get ('/planner-entries/day/{date}', [PlannerEntryController::class, 'getByDay']);
 Route::post('/planner-entries', [PlannerEntryController::class, 'Store']);
 Route::put('/planner-entries/{id}', [PlannerEntryController::class, 'Update']);
-Route::delete('planner-entries/{id}', [PlannerEntryController::class, 'Destroy']);
+Route::delete('/planner-entries/{id}', [PlannerEntryController::class, 'Destroy']);
 });
 
 //planner metadata
 Route::middleware('auth:sanctum')->group(function() {
-Route::get('/planner-metadata/day/{id}', [PlannerMetadataController::class, 'Show']);
+Route::get('/planner-metadata/day/{date}', [PlannerMetadataController::class, 'Show']);
 Route::post('/planner-metadata', [PlannerMetadataController::class, 'Store']);
 });
 
 //Todo Routes
 Route::middleware('auth:sanctum')->group(function(){
-    Route::get('/todo/day/{date}', [TodoController::class, 'getByDay']);
+    Route::get('/todo/date/{date}', [TodoController::class, 'getByDay']);
     Route::post('/todo', [TodoController::class, 'Store']);
     Route::put('/todo/{id}', [TodoController::class, 'Update']);
     Route::patch('/todo/{id}/toggle', [TodoController::class], 'Toggle');
