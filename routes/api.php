@@ -25,8 +25,7 @@ Route::post('/logout', [AuthController::class, 'Logout']);
 
 Route::middleware('auth:sanctum')->group(function () {
 
-    Route::get('/me', [AuthController::class, 'me']);
-    Route::post('/refresh', [AuthController::class, 'refresh']);
+Route::get('/me', [AuthController::class, 'me']);
 
 Route::get('/planner-entries/week/{startDate}', [PlannerEntryController::class, 'getByWeek']);
 Route::get ('/planner-entries/day/{date}', [PlannerEntryController::class, 'getByDay']);
