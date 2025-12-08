@@ -45,6 +45,6 @@ Route::middleware('auth:sanctum')->group(function(){
     Route::get('/todo/date/{date}', [TodoController::class, 'getByDay']);
     Route::post('/todo', [TodoController::class, 'Store']);
     Route::put('/todo/{id}', [TodoController::class, 'Update']);
-    Route::patch('/todo/{id}/toggle', [TodoController::class], 'Toggle');
+    Route::patch('/todo/{id}/toggle', [TodoController::class, 'Toggle']);
     Route::delete('/todo/{id}', [TodoController::class, 'Destroy']);
 });

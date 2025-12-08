@@ -37,7 +37,7 @@ class TodoController extends Controller
    {
     $todo=Todo::where('user_id', auth()->id())
     ->findOrFail($id);
-    $todo=update([
+    $todo->update([
         'completed'=>!$todo->completed
     ]);
     return response()->json([
